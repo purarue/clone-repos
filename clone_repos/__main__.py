@@ -19,7 +19,7 @@ def _default(val: Any) -> Any:
 
 
 @click.command(
-    epilog="See https://github.com/seanbreckenridge/clone-repos/ for config file format"
+    epilog="See https://github.com/purarue/clone-repos/ for config file format"
 )
 @click.option(
     "-b",

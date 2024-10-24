@@ -1,4 +1,4 @@
-"https://github.com/seanbreckenridge/ttally":
+"https://github.com/purarue/ttally":
   preinstall:
     - "false"
     - "echo this shouldnt run"

@@ -1,12 +1,12 @@
-"https://github.com/seanbreckenridge/ttally":
+"https://github.com/purarue/ttally":
   pip: install
   preinstall: "git pull"
-"https://github.com/seanbreckenridge/mal-id-cache":
-"https://github.com/seanbreckenridge/albums":
+"https://github.com/purarue/mal-id-cache":
+"https://github.com/purarue/albums":
   pip: editable
   preinstall:
     - "git pull"
-"https://github.com/seanbreckenridge/bleanser-fork":
+"https://github.com/purarue/bleanser-fork":
   dirname: bl-fork
   symlink_to: "/tmp"
   pip: editable
@@ -14,17 +14,17 @@
   postinstall:
     - 'git remote add upstream "https://github.com/karlicoss/bleanser"'
     - "git pull upstream master"
-"https://github.com/seanbreckenridge/bleanser":
+"https://github.com/purarue/bleanser":
   pip: install
-"https://github.com/seanbreckenridge/promnesia-fork":
+"https://github.com/purarue/promnesia-fork":
   pip: editable
   postinstall: 'git remote add upstream "https://github.com/karlicoss/promnesia"'
-"https://github.com/seanbreckenridge/promnesia":
+"https://github.com/purarue/promnesia":
   pip: editable
-"https://github.com/seanbreckenridge/HPI":
+"https://github.com/purarue/HPI":
   postinstall: "./install"
-"https://github.com/seanbreckenridge/HPI-personal":
+"https://github.com/purarue/HPI-personal":
   postinstall: "./install"
-"https://github.com/seanbreckenridge/HPI-fork":
+"https://github.com/purarue/HPI-fork":
   dirname: "HPI-karlicoss" # name of directory to clone into
   postinstall: 'git remote add upstream "https://github.com/karlicoss/HPI"'

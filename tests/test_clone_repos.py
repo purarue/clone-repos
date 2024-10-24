@@ -19,7 +19,7 @@ def test_parse_config() -> None:
     pl = repos[3]
     assert isinstance(pl, Repo)
     assert pl.base == base
-    assert pl.git_url == "https://github.com/seanbreckenridge/bleanser-fork"
+    assert pl.git_url == "https://github.com/purarue/bleanser-fork"
     assert pl.postinstall_cmd == [
         'git remote add upstream "https://github.com/karlicoss/bleanser"',
         "git pull upstream master",
@@ -30,7 +30,7 @@ def test_parse_config() -> None:
     assert pl.dirname == "bl-fork"
     assert pl.symlink_to == "/tmp"
 
-    assert repos[0].git_url == "https://github.com/seanbreckenridge/ttally"
+    assert repos[0].git_url == "https://github.com/purarue/ttally"
     assert repos[0].preinstall_cmd == ["git pull"]
     assert repos[2].preinstall_cmd == ["git pull"]
     assert repos[2].pipefail == False
