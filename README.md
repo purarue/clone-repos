@@ -6,14 +6,14 @@ This supports running a preinstall (after cloning) or postinstall step (a shell 
 
 For examples of a `clone-repos.yaml` file this expects at `~/.config/clone-repos.yaml`, see:
 
-- [clone-repos](https://sean.fish/d/clone-repos.yaml?redirect)
-- [computer-clone-repos](https://sean.fish/d/computer-clone-repos.yaml?redirect)
-- [hpi-clone-repos](https://sean.fish/d/hpi-clone-repos.yaml?redirect)
+- [clone-repos](https://purarue.xyz/d/clone-repos.yaml?redirect)
+- [computer-clone-repos](https://purarue.xyz/d/computer-clone-repos.yaml?redirect)
+- [hpi-clone-repos](https://purarue.xyz/d/hpi-clone-repos.yaml?redirect)
 
 I also use this to install plugins/addons for things like [ranger](https://ranger.github.io/) or [todotxt](https://github.com/todotxt/todo.txt-cli):
 
-- [ranger-plugins](https://sean.fish/d/ranger-plugins.yaml?redirect)
-- [todotxt-actions](https://sean.fish/d/todotxt-actions.yaml?redirect)
+- [ranger-plugins](https://purarue.xyz/d/ranger-plugins.yaml?redirect)
+- [todotxt-actions](https://purarue.xyz/d/todotxt-actions.yaml?redirect)
 
 ## Installation
 
