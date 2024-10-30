@@ -249,7 +249,7 @@ class Repo:
         if any(t in installed for t in targets):
             click.echo(f"{self.name}: {self.target} already in editable install list")
         else:
-            cmd = f"""{sys.executable} -m pip install {'--user' if not self.editable_non_user else ''} --editable {'--break-system-packages' if self.break_system_packages else ''} '{self.target}'"""
+            cmd = f"""{sys.executable} -m pip install {'--user' if not self.editable_non_user else ''} {'--break-system-packages' if self.break_system_packages else ''} --editable '{self.target}'"""
             click.echo(f"{self.name}: running '{cmd}'")
             proc = subprocess.Popen(shlex.split(cmd))
             proc.wait()
