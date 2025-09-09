@@ -50,7 +50,7 @@ warn_return_any = true
 warn_unreachable = true
 
 [tool.pytest.ini_options]
-addopts = ["./tests/"]
+addopts = "./tests/"
 
 [tool.setuptools.packages.find]
 include = ["clone_repos"]
