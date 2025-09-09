@@ -17,7 +17,7 @@ I also use this to install plugins/addons for things like [ranger](https://range
 
 ## Installation
 
-Requires `python3.9+`
+Requires `python3.10+`
 
 To install with pip, run:
 

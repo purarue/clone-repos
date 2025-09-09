@@ -8,7 +8,8 @@ import contextlib
 from functools import cached_property, lru_cache
 from pathlib import Path
 from urllib.parse import urlparse
-from typing import Dict, Any, Optional, Union, List, Iterator
+from typing import Any
+from collections.abc import Iterator
 
 import click
 import yaml
@@ -16,7 +17,7 @@ from reorder_editable.core import Editable
 
 
 @contextlib.contextmanager
-def in_cwd(to_dir: Union[str, Path]) -> Iterator[None]:
+def in_cwd(to_dir: str | Path) -> Iterator[None]:
     curdir = os.getcwd()
     try:
         os.chdir(to_dir)
@@ -26,7 +27,7 @@ def in_cwd(to_dir: Union[str, Path]) -> Iterator[None]:
 
 
 @lru_cache(maxsize=1)
-def _git_path() -> Union[str, RuntimeError]:
+def _git_path() -> str | RuntimeError:
     git_path = shutil.which("git")
     if git_path is None:
         return RuntimeError("Could not find 'git' on your $PATH")
@@ -40,10 +41,10 @@ class Repo:
         git_url: str,
         *,
         break_system_packages: bool = False,
-        symlink_to: Optional[str] = None,
-        dirname: Optional[str] = None,
-        preinstall_cmd: Optional[List[str]] = None,
-        postinstall_cmd: Optional[List[str]] = None,
+        symlink_to: str | None = None,
+        dirname: str | None = None,
+        preinstall_cmd: list[str] | None = None,
+        postinstall_cmd: list[str] | None = None,
         pip_install: bool = False,
         editable_install: bool = False,
         editable_non_user: bool = False,
@@ -63,7 +64,7 @@ class Repo:
         self.break_system_packages = break_system_packages
 
     @staticmethod
-    def strip_bool(val: Union[bool, str, None], default: bool) -> bool:
+    def strip_bool(val: bool | str | None, default: bool) -> bool:
         if val is None:
             return default
         if isinstance(val, bool):
@@ -76,7 +77,7 @@ class Repo:
         raise RuntimeError(f"Could not parse bool: {val}")
 
     @staticmethod
-    def strip_str(val: Optional[str]) -> Optional[str]:
+    def strip_str(val: str | None) -> str | None:
         if val is None:
             return None
         if val.strip() == "":
@@ -84,7 +85,7 @@ class Repo:
         return val
 
     @classmethod
-    def strip_lst(cls, val: Union[Optional[str], List[str]]) -> List[str]:
+    def strip_lst(cls, val: str | None | list[str]) -> list[str]:
         if val is None:
             return []
         if isinstance(val, str):
@@ -102,17 +103,15 @@ class Repo:
             f"While trying to parse list, string or null, found {type(val)} {val}"
         )
 
-    known_keys = set(
-        [
-            "dirname",
-            "pip",
-            "preinstall",
-            "postinstall",
-            "symlink_to",
-            "base",
-            "pipefail",
-        ]
-    )
+    known_keys = {
+        "dirname",
+        "pip",
+        "preinstall",
+        "postinstall",
+        "symlink_to",
+        "base",
+        "pipefail",
+    }
 
     @classmethod
     def from_dict(
@@ -120,7 +119,7 @@ class Repo:
         git_url: str,
         base: Path,
         break_system_packages: bool,
-        data: Optional[Dict[str, Any]] = None,
+        data: dict[str, Any] | None = None,
     ) -> Repo:
         if data is None:
             data = {}
@@ -190,7 +189,7 @@ class Repo:
     def target(self) -> Path:
         return self.base / self.name
 
-    def _git_clone(self) -> Optional[Exception]:
+    def _git_clone(self) -> Exception | None:
         gp = _git_path()
         if isinstance(gp, Exception):
             return gp
@@ -315,8 +314,8 @@ class Repo:
         base: Path,
         file: Path,
         break_system_packages: bool = False,
-    ) -> List["Repo"]:
-        repos: List[Repo] = []
+    ) -> list[Repo]:
+        repos: list[Repo] = []
         with file.open("r") as f:
             data = yaml.load(f, Loader=yaml.FullLoader)
         for key, data in data.items():
